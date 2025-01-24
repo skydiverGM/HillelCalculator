@@ -51,15 +51,16 @@ function calculate() {
         return;
     }
 
+    const precision = 1000000; // Округление до 6 знаков
     switch (operator) {
         case '+':
-            result += currentNumber;
+            result = Math.round((result + currentNumber) * precision) / precision;
             break;
         case '-':
-            result -= currentNumber;
+            result = Math.round((result - currentNumber) * precision) / precision;
             break;
         case '×':
-            result *= currentNumber;
+            result = Math.round((result * currentNumber) * precision) / precision;
             break;
         case '÷':
             if (currentNumber === 0) {
@@ -69,10 +70,11 @@ function calculate() {
                 operator = '';
                 return;
             }
-            result /= currentNumber;
+            result = Math.round((result / currentNumber) * precision) / precision;
             break;
     }
 
     input.textContent = result;
     currentInput = '';
 }
+
