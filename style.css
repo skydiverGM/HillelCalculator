@@ -47,11 +47,30 @@ body {
     color: greenyellow;
 }
 
-.numbers, .operators, .equal {
+.numbers, .operators, .equal , .zeropoint, .clearequals{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.buttons .equal {
-    width: 100%;
+
+.operators button{
+    width: 20%;
 }
+.numbers button{
+    width: 28%;
+}
+.zeropoint button{
+    width: 45%;
+}
+.clearequals{
+    display: flex;
+    justify-content: space-around;
+}
+
+.clearequals button{
+    width: 200px;
+}
+.clearequals .equals-btn{
+    height: 130px;
+}
+

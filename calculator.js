@@ -9,11 +9,19 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent;
 
-        if (button.id === 'clear') {
+        if (button.id === 'clear-btn') { // Исправлен ID кнопки "C"
             currentInput = '';
             result = null;
             operator = '';
             input.textContent = '';
+            return;
+        }
+
+        if (button.id === 'backspace-btn') { // Логика Backspace
+            if (currentInput.length > 0) {
+                currentInput = currentInput.slice(0, -1);
+                input.textContent = currentInput;
+            }
             return;
         }
 
@@ -51,25 +59,26 @@ function calculate() {
         return;
     }
 
+    const precision = 1000000; // Округление до 6 знаков
     switch (operator) {
         case '+':
-            result += currentNumber;
+            result = Math.round((result + currentNumber) * precision) / precision;
             break;
         case '-':
-            result -= currentNumber;
+            result = Math.round((result - currentNumber) * precision) / precision;
             break;
         case '×':
-            result *= currentNumber;
+            result = Math.round((result * currentNumber) * precision) / precision;
             break;
         case '÷':
             if (currentNumber === 0) {
-                input.textContent = 'Error';
+                input.textContent = 'Can\'t divide by 0';
                 result = null;
                 currentInput = '';
                 operator = '';
                 return;
             }
-            result /= currentNumber;
+            result = Math.round((result / currentNumber) * precision) / precision;
             break;
     }
 
